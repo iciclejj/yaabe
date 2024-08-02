@@ -756,4 +756,127 @@ struct atomtree_master_datatable {
 	};
 };
 
+
+/* COMMAND TABLES 
+ * 
+ * TODO: move into command_tables.h?
+ */
+struct atomtree_command_table {
+	union {
+		// TODO: figure out what exactly to put here
+		void* leaves;
+		struct atom_command_table* command_table;
+		struct atom_common_rom_command_table_header* command_table_header;
+		struct atom_common_table_header* table_header;
+	};
+	bool atom_op_eot_hit; // false => possibly malformed commands array contents.
+	size_t commands_size; // TODO: figure out best type for this
+	size_t num_commands;
+
+	// TODO: Flexible array member?
+	struct atom_command* commands;
+};
+
+struct atomtree_master_command_table_v1_1 { // TODO: Is this v1_1? see atombios.h
+	union {
+		struct atom_common_table_header* table_header;
+		struct atom_master_list_of_command_tables* leaves; // nonzero if populated
+	};
+
+	struct atomtree_command_table asic_init;					// Function Table, used by various SW components,latest version 1.1
+	struct atomtree_command_table getdisplaysurfacesize;		// Atomic Table,  Used by Bios when enabling HW ICON
+	struct atomtree_command_table asic_registersinit;               // Atomic Table,  indirectly used by various SW components,called from ASIC_Init
+	struct atomtree_command_table vram_blockvenderdetection;        // Atomic Table,  used only by Bios
+	struct atomtree_command_table digxencodercontrol;               // Only used by Bios
+	struct atomtree_command_table memorycontrollerinit;             // Atomic Table,  indirectly used by various SW components,called from ASIC_Init
+	struct atomtree_command_table enablecrtcmemreq;                 // Function Table,directly used by various SW components,latest version 2.1
+	struct atomtree_command_table memoryparamadjust;                // Atomic Table,  indirectly used by various SW components,called from SetMemoryClock if needed
+	struct atomtree_command_table dvoencodercontrol;                // Function Table,directly used by various SW components,latest version 1.2
+	struct atomtree_command_table gpiopincontrol;                   // Atomic Table,  only used by Bios
+	struct atomtree_command_table setengineclock;                   // Function Table,directly used by various SW components,latest version 1.1
+	struct atomtree_command_table setmemoryclock;                   // Function Table,directly used by various SW components,latest version 1.1
+	struct atomtree_command_table setpixelclock;                    // Function Table,directly used by various SW components,latest version 1.2
+	struct atomtree_command_table enabledisppowergating;            // Atomic Table,  indirectly used by various SW components,called from ASIC_Init
+	struct atomtree_command_table resetmemorydll;                   // Atomic Table,  indirectly used by various SW components,called from SetMemoryClock
+	struct atomtree_command_table resetmemorydevice;                // Atomic Table,  indirectly used by various SW components,called from SetMemoryClock
+	struct atomtree_command_table memorypllinit;                    // Atomic Table,  used only by Bios
+	struct atomtree_command_table adjustdisplaypll;                 // Atomic Table,  used by various SW componentes.
+	struct atomtree_command_table adjustmemorycontroller;           // Atomic Table,  indirectly used by various SW components,called from SetMemoryClock
+	struct atomtree_command_table enableasic_staticpwrmgt;          // Atomic Table,  only used by Bios
+	struct atomtree_command_table setuniphyinstance;                // Atomic Table,  only used by Bios
+	struct atomtree_command_table dac_loaddetection;                // Atomic Table,  directly used by various SW components,latest version 1.2
+	struct atomtree_command_table lvtmaencodercontrol;              // Atomic Table,directly used by various SW components,latest version 1.3
+	struct atomtree_command_table hw_misc_operation;                // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table dac1encodercontrol;               // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table dac2encodercontrol;               // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table dvooutputcontrol;                 // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table cv1outputcontrol;                 // Atomic Table,  Atomic Table,  Obsolete from Ry6xx, use DAC2 Output instead
+	struct atomtree_command_table getconditionalgoldensetting;      // Only used by Bios
+	struct atomtree_command_table smc_init;                         // Function Table,directly used by various SW components,latest version 1.1
+	struct atomtree_command_table patchmcsetting;                   // only used by BIOS
+	struct atomtree_command_table mc_seq_control;                   // only used by BIOS
+	struct atomtree_command_table gfx_harvesting;                   // Atomic Table,  Obsolete from Ry6xx, Now only used by BIOS for GFX harvesting
+	struct atomtree_command_table enablescaler;                     // Atomic Table,  used only by Bios
+	struct atomtree_command_table blankcrtc;                        // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table enablecrtc;                       // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table getpixelclock;                    // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table enablevga_render;                 // Function Table,directly used by various SW components,latest version 1.1
+	struct atomtree_command_table getsclkovermclkratio;             // Atomic Table,  only used by Bios
+	struct atomtree_command_table setcrtc_timing;                   // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table setcrtc_overscan;                 // Atomic Table,  used by various SW components,latest version 1.1
+	struct atomtree_command_table getsmuclockinfo;                  // Atomic Table,  used only by Bios
+	struct atomtree_command_table selectcrtc_source;                // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table enablegraphsurfaces;              // Atomic Table,  used only by Bios
+	struct atomtree_command_table updatecrtc_doublebufferregisters; // Atomic Table,  used only by Bios
+	struct atomtree_command_table lut_autofill;                     // Atomic Table,  only used by Bios
+	struct atomtree_command_table setdceclock;                      // Atomic Table,  start from DCE11.1, shared by driver and VBIOS, change DISPCLK and DPREFCLK
+	struct atomtree_command_table getmemoryclock;                   // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table getengineclock;                   // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table setcrtc_usingdtdtiming;           // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table externalencodercontrol;           // Atomic Table,  directly used by various SW components,latest version 2.1
+	struct atomtree_command_table lvtmaoutputcontrol;               // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table vram_blockdetectionbystrap;       // Atomic Table,  used only by Bios
+	struct atomtree_command_table memorycleanup;                    // Atomic Table,  only used by Bios
+	struct atomtree_command_table processi2cchanneltransaction;     // Function Table,only used by Bios
+	struct atomtree_command_table writeonebytetohwassistedi2c;      // Function Table,indirectly used by various SW components
+	struct atomtree_command_table readhwassistedi2cstatus;          // Atomic Table,  indirectly used by various SW components
+	struct atomtree_command_table speedfancontrol;                  // Function Table,indirectly used by various SW components,called from ASIC_Init
+	struct atomtree_command_table powerconnectordetection;          // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table mc_synchronization;               // Atomic Table,  indirectly used by various SW components,called from SetMemoryClock
+	struct atomtree_command_table computememoryenginepll;           // Atomic Table,  indirectly used by various SW components,called from SetMemory/EngineClock
+	struct atomtree_command_table gfx_init;                         // Atomic Table,  indirectly used by various SW components,called from SetMemory or SetEngineClock
+	struct atomtree_command_table vram_getcurrentinfoblock;         // Atomic Table,  used only by Bios
+	struct atomtree_command_table dynamicmemorysettings;            // Atomic Table,  indirectly used by various SW components,called from SetMemoryClock
+	struct atomtree_command_table memorytraining;                   // Atomic Table,  used only by Bios
+	struct atomtree_command_table enablespreadspectrumonppll;       // Atomic Table,  directly used by various SW components,latest version 1.2
+	struct atomtree_command_table tmdsaoutputcontrol;               // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table setvoltage;                       // Function Table,directly and/or indirectly used by various SW components,latest version 1.1
+	struct atomtree_command_table dac1outputcontrol;                // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table readefusevalue;                   // Atomic Table,  directly used by various SW components,latest version 1.1
+	struct atomtree_command_table computememoryclockparam;          // Function Table,only used by Bios, obsolete soon.Switch to use "ReadEDIDFromHWAssistedI2C"
+	struct atomtree_command_table clocksource;                      // Atomic Table,  indirectly used by various SW components,called from ASIC_Init
+	struct atomtree_command_table memorydeviceinit;                 // Atomic Table,  indirectly used by various SW components,called from SetMemoryClock
+	struct atomtree_command_table getdispobjectinfo;                // Atomic Table,  indirectly used by various SW components,called from EnableVGARender
+	struct atomtree_command_table dig1encodercontrol;               // Atomic Table,directly used by various SW components,latest version 1.1
+	struct atomtree_command_table dig2encodercontrol;               // Atomic Table,directly used by various SW components,latest version 1.1
+	struct atomtree_command_table dig1transmittercontrol;           // Atomic Table,directly used by various SW components,latest version 1.1
+	struct atomtree_command_table dig2transmittercontrol;           // Atomic Table,directly used by various SW components,latest version 1.1
+	struct atomtree_command_table processauxchanneltransaction;     // Function Table,only used by Bios
+	struct atomtree_command_table dpencoderservice;                 // Function Table,only used by Bios
+	struct atomtree_command_table getvoltageinfo;                   // Function Table,only used by Bios since SI
+};
+
+struct atomtree_master_command_table {
+	union {
+		void* leaves; // nonzero if populated (XXX: for null checks?)
+		struct atom_common_table_header* table_header;
+	};
+
+	enum atomtree_common_version ver;
+	union {
+		struct atomtree_master_command_table_v1_1 v1_1; // TODO: rename to master_command_table (everywhere)? Also, find out exact version.
+		// TODO: struct atomtree_master_list_of_command_functions_v2_1 v2_1;
+	};
+};
+
 #endif

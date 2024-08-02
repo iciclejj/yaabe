@@ -23,6 +23,7 @@ atomtree.h is mainly about atomtree metadata and initial bios crawling.
 enum atomtree_common_version:uint16_t;
 typedef struct _atui_branch atui_branch;
 #include "data_tables.h"
+#include "command_tables.h"
 #include "asic_reg_tools.h"
 
 // make sure we're not on 1-byte packing after all the including
@@ -68,15 +69,14 @@ struct atom_tree {
 		void* bios;
 		struct vbios_rom_header* image;
 	};
-	uint32_t bios_image_size;
+	uint32_t bios_image_size; // value from pci_rom_header in atombios
 	uint8_t num_of_crawled_strings;
 	char* atombios_strings[NUM_ATOMBIOS_STRINGS];
 
 	struct atomtree_pci_tables pcir_tables;
 	struct atomtree_rom_header rom_header;
 	struct atomtree_master_datatable data_table;
-	//struct atom_master_cmdtable_v2_1 cmd_table; // atom_master_list_of_command_functions_v2_1 TODO
-
+	struct atomtree_master_command_table cmd_table; 
 
 	//bios_parser2_construct populates Display Core stuff
 	//https://docs.kernel.org/gpu/amdgpu/display/index.html

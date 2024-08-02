@@ -1318,7 +1318,7 @@ global_default: {
 		},
 	],
 }, {
-	c_type: "mc_seq_rxframing_dbi_d1_6_0_o",
+	c_type: "mc_seq_rxframing_dbi_d1_6_0_o", // TODO: annotate: data bus inversion?
 	leaves: [
 		{
 			access: "bios->raw_data",

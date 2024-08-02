@@ -805,6 +805,637 @@ global_default: {
 		},
 	],
 }, {
+	c_type: "atom_master_list_of_command_tables",
+	leaves: [
+		{
+			access: "bios->table_header",
+			name: "table_header",
+			display: "ATUI_NAN",
+			fancy: "ATUI_GRAFT", fancy_data: "atom_common_table_header",
+		}, {
+			access: "bios->ASIC_Init",
+			name: "ASIC_Init",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table, used by various SW components. Latest version: 1.1",},
+			],
+		}, {
+			access: "bios->GetDisplaySurfaceSize",
+			name: "GetDisplaySurfaceSize",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  Used by Bios when enabling HW ICON",},
+			],
+		}, {
+			access: "bios->ASIC_RegistersInit",
+			name: "ASIC_RegistersInit",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  indirectly used by various SW components,called from ASIC_Init",},
+			],
+		}, {
+			access: "bios->VRAM_BlockVenderDetection",
+			name: "VRAM_BlockVenderDetection",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  used only by Bios",},
+			],
+		}, {
+			access: "bios->DIGxEncoderControl",
+			name: "DIGxEncoderControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Only used by Bios",},
+			],
+		}, {
+			access: "bios->MemoryControllerInit",
+			name: "MemoryControllerInit",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  indirectly used by various SW components,called from ASIC_Init",},
+			],
+		}, {
+			access: "bios->EnableCRTCMemReq",
+			name: "EnableCRTCMemReq",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,directly used by various SW components,latest version 2.1",},
+			],
+		}, {
+			access: "bios->MemoryParamAdjust",
+			name: "MemoryParamAdjust",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  indirectly used by various SW components,called from SetMemoryClock if needed",},
+			],
+		}, {
+			access: "bios->DVOEncoderControl",
+			name: "DVOEncoderControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,directly used by various SW components,latest version 1.2",},
+			],
+		}, {
+			access: "bios->GPIOPinControl",
+			name: "GPIOPinControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  only used by Bios",},
+			],
+		}, {
+			access: "bios->SetEngineClock",
+			name: "SetEngineClock",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->SetMemoryClock",
+			name: "SetMemoryClock",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->SetPixelClock",
+			name: "SetPixelClock",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,directly used by various SW components,latest version 1.2",},
+			],
+		}, {
+			access: "bios->EnableDispPowerGating",
+			name: "EnableDispPowerGating",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  indirectly used by various SW components,called from ASIC_Init",},
+			],
+		}, {
+			access: "bios->ResetMemoryDLL",
+			name: "ResetMemoryDLL",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  indirectly used by various SW components,called from SetMemoryClock",},
+			],
+		}, {
+			access: "bios->ResetMemoryDevice",
+			name: "ResetMemoryDevice",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  indirectly used by various SW components,called from SetMemoryClock",},
+			],
+		}, {
+			access: "bios->MemoryPLLInit",
+			name: "MemoryPLLInit",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  used only by Bios",},
+			],
+		}, {
+			access: "bios->AdjustDisplayPll",
+			name: "AdjustDisplayPll",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  used by various SW componentes.",},
+			],
+		}, {
+			access: "bios->AdjustMemoryController",
+			name: "AdjustMemoryController",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  indirectly used by various SW components,called from SetMemoryClock",},
+			],
+		}, {
+			access: "bios->EnableASIC_StaticPwrMgt",
+			name: "EnableASIC_StaticPwrMgt",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  only used by Bios",},
+			],
+		}, {
+			access: "bios->SetUniphyInstance",
+			name: "SetUniphyInstance",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  only used by Bios,",},
+			],
+		}, {
+			access: "bios->DAC_LoadDetection",
+			name: "DAC_LoadDetection",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.2",},
+			],
+		}, {
+			access: "bios->LVTMAEncoderControl",
+			name: "LVTMAEncoderControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,directly used by various SW components,latest version 1.3",},
+			],
+		}, {
+			access: "bios->HW_Misc_Operation",
+			name: "HW_Misc_Operation",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->DAC1EncoderControl",
+			name: "DAC1EncoderControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->DAC2EncoderControl",
+			name: "DAC2EncoderControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->DVOOutputControl",
+			name: "DVOOutputControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->CV1OutputControl",
+			name: "CV1OutputControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  Atomic Table,  Obsolete from Ry6xx, use DAC2 Output instead",},
+			],
+		}, {
+			access: "bios->GetConditionalGoldenSetting",
+			name: "GetConditionalGoldenSetting",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Only used by Bios",},
+			],
+		}, {
+			access: "bios->SMC_Init",
+			name: "SMC_Init",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->PatchMCSetting",
+			name: "PatchMCSetting",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "only used by BIOS",},
+			],
+		}, {
+			access: "bios->MC_SEQ_Control",
+			name: "MC_SEQ_Control",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "only used by BIOS",},
+			],
+		}, {
+			access: "bios->Gfx_Harvesting",
+			name: "Gfx_Harvesting",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  Obsolete from Ry6xx, Now only used by BIOS for GFX harvesting",},
+			],
+		}, {
+			access: "bios->EnableScaler",
+			name: "EnableScaler",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  used only by Bios",},
+			],
+		}, {
+			access: "bios->BlankCRTC",
+			name: "BlankCRTC",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->EnableCRTC",
+			name: "EnableCRTC",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->GetPixelClock",
+			name: "GetPixelClock",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->EnableVGA_Render",
+			name: "EnableVGA_Render",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->GetSCLKOverMCLKRatio",
+			name: "GetSCLKOverMCLKRatio",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  only used by Bios",},
+			],
+		}, {
+			access: "bios->SetCRTC_Timing",
+			name: "SetCRTC_Timing",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->SetCRTC_OverScan",
+			name: "SetCRTC_OverScan",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->GetSMUClockInfo",
+			name: "GetSMUClockInfo",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  used only by Bios",},
+			],
+		}, {
+			access: "bios->SelectCRTC_Source",
+			name: "SelectCRTC_Source",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->EnableGraphSurfaces",
+			name: "EnableGraphSurfaces",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  used only by Bios",},
+			],
+		}, {
+			access: "bios->UpdateCRTC_DoubleBufferRegisters",
+			name: "UpdateCRTC_DoubleBufferRegisters",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  used only by Bios",},
+			],
+		}, {
+			access: "bios->LUT_AutoFill",
+			name: "LUT_AutoFill",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  only used by Bios",},
+			],
+		}, {
+			access: "bios->SetDCEClock",
+			name: "SetDCEClock",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  start from DCE11.1, shared by driver and VBIOS, change DISPCLK and DPREFCLK",},
+			],
+		}, {
+			access: "bios->GetMemoryClock",
+			name: "GetMemoryClock",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->GetEngineClock",
+			name: "GetEngineClock",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->SetCRTC_UsingDTDTiming",
+			name: "SetCRTC_UsingDTDTiming",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->ExternalEncoderControl",
+			name: "ExternalEncoderControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 2.1",},
+			],
+		}, {
+			access: "bios->LVTMAOutputControl",
+			name: "LVTMAOutputControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->VRAM_BlockDetectionByStrap",
+			name: "VRAM_BlockDetectionByStrap",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  used only by Bios",},
+			],
+		}, {
+			access: "bios->MemoryCleanUp",
+			name: "MemoryCleanUp",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  only used by Bios",},
+			],
+		}, {
+			access: "bios->ProcessI2cChannelTransaction",
+			name: "ProcessI2cChannelTransaction",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,only used by Bios",},
+			],
+		}, {
+			access: "bios->WriteOneByteToHWAssistedI2C",
+			name: "WriteOneByteToHWAssistedI2C",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,indirectly used by various SW components",},
+			],
+		}, {
+			access: "bios->ReadHWAssistedI2CStatus",
+			name: "ReadHWAssistedI2CStatus",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  indirectly used by various SW components",},
+			],
+		}, {
+			access: "bios->SpeedFanControl",
+			name: "SpeedFanControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,indirectly used by various SW components,called from ASIC_Init",},
+			],
+		}, {
+			access: "bios->PowerConnectorDetection",
+			name: "PowerConnectorDetection",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->MC_Synchronization",
+			name: "MC_Synchronization",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  indirectly used by various SW components,called from SetMemoryClock",},
+			],
+		}, {
+			access: "bios->ComputeMemoryEnginePLL",
+			name: "ComputeMemoryEnginePLL",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  indirectly used by various SW components,called from SetMemory/EngineClock",},
+			],
+		}, {
+			access: "bios->Gfx_Init",
+			name: "Gfx_Init",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  indirectly used by various SW components,called from SetMemory or SetEngineClock",},
+			],
+		}, {
+			access: "bios->VRAM_GetCurrentInfoBlock",
+			name: "VRAM_GetCurrentInfoBlock",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  used only by Bios",},
+			],
+		}, {
+			access: "bios->DynamicMemorySettings",
+			name: "DynamicMemorySettings",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  indirectly used by various SW components,called from SetMemoryClock",},
+			],
+		}, {
+			access: "bios->MemoryTraining",
+			name: "MemoryTraining",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  used only by Bios",},
+			],
+		}, {
+			access: "bios->EnableSpreadSpectrumOnPPLL",
+			name: "EnableSpreadSpectrumOnPPLL",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.2",},
+			],
+		}, {
+			access: "bios->TMDSAOutputControl",
+			name: "TMDSAOutputControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->SetVoltage",
+			name: "SetVoltage",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,directly and/or indirectly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->DAC1OutputControl",
+			name: "DAC1OutputControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->ReadEfuseValue",
+			name: "ReadEfuseValue",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Atomic Table,  directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->ComputeMemoryClockParam",
+			name: "ComputeMemoryClockParam",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,only used by Bios, obsolete soon.Switch to use 'ReadEDIDFromHWAssistedI2C'",},
+			],
+		}, {
+			access: "bios->ClockSource",
+			name: "ClockSource",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,only used by Bios, obsolete soon.Switch to use 'ReadEDIDFromHWAssistedI2C'Atomic Table,  indirectly used by various SW components,called from ASIC_Init",},
+			],
+		}, {
+			access: "bios->MemoryDeviceInit",
+			name: "MemoryDeviceInit",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,only used by Bios, obsolete soon.Switch to use 'ReadEDIDFromHWAssistedI2C'Atomic Table,  indirectly used by various SW components,called from SetMemoryClock",},
+			],
+		}, {
+			access: "bios->GetDispObjectInfo",
+			name: "GetDispObjectInfo",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,only used by Bios, obsolete soon.Switch to use 'ReadEDIDFromHWAssistedI2C'Atomic Table,  indirectly used by various SW components,called from EnableVGARender",},
+			],
+		}, {
+			access: "bios->DIG1EncoderControl",
+			name: "DIG1EncoderControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,only used by Bios, obsolete soon.Switch to use 'ReadEDIDFromHWAssistedI2C'Atomic Table,directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->DIG2EncoderControl",
+			name: "DIG2EncoderControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,only used by Bios, obsolete soon.Switch to use 'ReadEDIDFromHWAssistedI2C'Atomic Table,directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->DIG1TransmitterControl",
+			name: "DIG1TransmitterControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,only used by Bios, obsolete soon.Switch to use 'ReadEDIDFromHWAssistedI2C'Atomic Table,directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->DIG2TransmitterControl",
+			name: "DIG2TransmitterControl",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,only used by Bios, obsolete soon.Switch to use 'ReadEDIDFromHWAssistedI2C'Atomic Table,directly used by various SW components,latest version 1.1",},
+			],
+		}, {
+			access: "bios->ProcessAuxChannelTransaction",
+			name: "ProcessAuxChannelTransaction",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,only used by Bios, obsolete soon.Switch to use 'ReadEDIDFromHWAssistedI2C'Function Table,only used by Bios",},
+			],
+		}, {
+			access: "bios->DPEncoderService",
+			name: "DPEncoderService",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,only used by Bios, obsolete soon.Switch to use 'ReadEDIDFromHWAssistedI2C'Function Table,only used by Bios",},
+			],
+		}, {
+			access: "bios->GetVoltageInfo",
+			name: "GetVoltageInfo",
+			display: "ATUI_HEX",
+			description: [
+				{language: "english", text: "Function Table,only used by Bios, obsolete soon.Switch to use 'ReadEDIDFromHWAssistedI2C'Function Table,only used by Bios since SI",},
+			],
+		},
+	],
+}, {
+	c_prefix: "union",  c_type: "atom_table_attribute",
+	table_size: "sizeof(*bios)",
+	leaves: [
+		{
+			access: "bios->table_attribute_bitfield",
+			name: "table_attribute_bitfield",
+			fancy: "ATUI_BITFIELD", fancy_data: [
+				{
+					name: "WS_SizeInBytes",
+					hi: 7, lo: 0,
+					description: [
+						{language: "english", text: "Workspace size in bytes"},
+					],
+				}, {
+					name: "PS_SizeInBytes",
+					hi: 14, lo: 8,
+					description: [
+						{language: "english", text: "Parameterspace size in bytes"}
+					],
+				}, {
+					name: "UpdatedByUtility",
+					hi:15, lo:15,
+				},
+			],
+		}
+	]
+}, {
+	c_type: "atom_common_rom_command_table_header",
+	leaves: [
+		{
+			access: "bios->table_header",
+			name: "table_header",
+			display: "ATUI_NAN",
+			fancy: "ATUI_GRAFT", fancy_data: "atom_common_table_header",
+		}, {
+			access: "bios->TableAttribute",
+			name: "TableAttribute",
+			display: "ATUI_NAN",
+			fancy: "ATUI_GRAFT", fancy_data: "atom_table_attribute",
+		},
+	],
+}, {
+	c_type: "atom_command_table",
+	atomtree: "atomtree_command_table",
+	table_size: "offsetof(struct atom_command_table, commands) + (atomtree->commands_size)",
+	leaves: [
+		{
+			access: "bios->command_table_header",
+			name: "command_table_header",
+			display: "ATUI_NAN",
+			fancy: "ATUI_GRAFT", fancy_data: "atom_common_rom_command_table_header",
+		}, /* TODO: Commands*/
+	],
+}, {
 	c_prefix: "union", c_type: "atombios_firmware_capability_v1",
 	atomtree: "atomtree_firmware_info",
 	table_size: "sizeof(*bios)",

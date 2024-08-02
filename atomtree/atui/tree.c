@@ -2640,6 +2640,242 @@ grow_datatables(
 	}
 }
 
+/* TODO: Implement this once atomtree_command_table::commands has been changed to a single pointer or flexible array member
+inline static atui_branch*
+grow_commands_v1_1(
+		struct atom_command*** const cmd, // hmm
+		struct atom_command_table* const cmd_table,
+		struct atom_tree* const atree
+		) {
+	return ATUI_MAKE_BRANCH(
+		atom_command, NULL,
+		cmd, (**cmd)->opcode,
+		cmd_table->num_commands, 
+	)
+}
+*/
+
+static atui_branch*
+grow_command_table_v1_1( // TODO: rename to v1_1 elsewhere
+		struct atomtree_command_table* const cmd_table,
+		struct atom_tree* const atree,
+		char *name
+		) {
+/* See grow_commands_v1_1
+	atui_branch* const commands = grow_commands_v1_1(&cmd_table->commands, cmd_table, atree);
+
+	atui_brand* const child_branches[] = {
+		commands
+	};
+*/
+
+	return ATUI_MAKE_BRANCH(
+		atom_command_table, name, 
+		cmd_table, cmd_table->leaves,
+		/* See grow_commands_v1_1
+		lengthof(child_branches), child_branches
+		 */
+		0, NULL
+	);
+}
+
+inline static atui_branch*
+grow_master_command_table_v1_1(
+		struct atomtree_master_command_table* const cmd_table,
+		struct atom_tree* const atree
+		) {
+	struct atomtree_master_command_table_v1_1* const cmdt11 = &cmd_table->v1_1;
+
+	atui_branch* const atui_asic_init = grow_command_table_v1_1(&cmdt11->asic_init, atree, "asic_init");
+	atui_branch* const atui_getdisplaysurfacesize = grow_command_table_v1_1(&cmdt11->getdisplaysurfacesize, atree, "getdisplaysurfacesize");
+	atui_branch* const asic_registersinit = grow_command_table_v1_1(&cmdt11->asic_registersinit, atree, "asic_registersinit");
+	atui_branch* const vram_blockvenderdetection = grow_command_table_v1_1(&cmdt11->vram_blockvenderdetection, atree, "vram_blockvenderdetection");
+	atui_branch* const digxencodercontrol = grow_command_table_v1_1(&cmdt11->digxencodercontrol, atree, "digxencodercontrol");
+	atui_branch* const memorycontrollerinit = grow_command_table_v1_1(&cmdt11->memorycontrollerinit, atree, "memorycontrollerinit");
+	atui_branch* const enablecrtcmemreq = grow_command_table_v1_1(&cmdt11->enablecrtcmemreq, atree, "enablecrtcmemreq");
+	atui_branch* const memoryparamadjust = grow_command_table_v1_1(&cmdt11->memoryparamadjust, atree, "memoryparamadjust");
+	atui_branch* const dvoencodercontrol = grow_command_table_v1_1(&cmdt11->dvoencodercontrol, atree, "dvoencodercontrol");
+	atui_branch* const gpiopincontrol = grow_command_table_v1_1(&cmdt11->gpiopincontrol, atree, "gpiopincontrol");
+	atui_branch* const setengineclock = grow_command_table_v1_1(&cmdt11->setengineclock, atree, "setengineclock");
+	atui_branch* const setmemoryclock = grow_command_table_v1_1(&cmdt11->setmemoryclock, atree, "setmemoryclock");
+	atui_branch* const setpixelclock = grow_command_table_v1_1(&cmdt11->setpixelclock, atree, "setpixelclock");
+	atui_branch* const enabledisppowergating = grow_command_table_v1_1(&cmdt11->enabledisppowergating, atree, "enabledisppowergating");
+	atui_branch* const resetmemorydll = grow_command_table_v1_1(&cmdt11->resetmemorydll, atree, "resetmemorydll");
+	atui_branch* const resetmemorydevice = grow_command_table_v1_1(&cmdt11->resetmemorydevice, atree, "resetmemorydevice");
+	atui_branch* const memorypllinit = grow_command_table_v1_1(&cmdt11->memorypllinit, atree, "memorypllinit");
+	atui_branch* const adjustdisplaypll = grow_command_table_v1_1(&cmdt11->adjustdisplaypll, atree, "adjustdisplaypll");
+	atui_branch* const adjustmemorycontroller = grow_command_table_v1_1(&cmdt11->adjustmemorycontroller, atree, "adjustmemorycontroller");
+	atui_branch* const enableasic_staticpwrmgt = grow_command_table_v1_1(&cmdt11->enableasic_staticpwrmgt, atree, "enableasic_staticpwrmgt");
+	atui_branch* const setuniphyinstance = grow_command_table_v1_1(&cmdt11->setuniphyinstance, atree, "setuniphyinstance");
+	atui_branch* const dac_loaddetection = grow_command_table_v1_1(&cmdt11->dac_loaddetection, atree, "dac_loaddetection");
+	atui_branch* const lvtmaencodercontrol = grow_command_table_v1_1(&cmdt11->lvtmaencodercontrol, atree, "lvtmaencodercontrol");
+	atui_branch* const hw_misc_operation = grow_command_table_v1_1(&cmdt11->hw_misc_operation, atree, "hw_misc_operation");
+	atui_branch* const dac1encodercontrol = grow_command_table_v1_1(&cmdt11->dac1encodercontrol, atree, "dac1encodercontrol");
+	atui_branch* const dac2encodercontrol = grow_command_table_v1_1(&cmdt11->dac2encodercontrol, atree, "dac2encodercontrol");
+	atui_branch* const dvooutputcontrol = grow_command_table_v1_1(&cmdt11->dvooutputcontrol, atree, "dvooutputcontrol");
+	atui_branch* const cv1outputcontrol = grow_command_table_v1_1(&cmdt11->cv1outputcontrol, atree, "cv1outputcontrol");
+	atui_branch* const getconditionalgoldensetting = grow_command_table_v1_1(&cmdt11->getconditionalgoldensetting, atree, "getconditionalgoldensetting");
+	atui_branch* const smc_init = grow_command_table_v1_1(&cmdt11->smc_init, atree, "smc_init");
+	atui_branch* const patchmcsetting = grow_command_table_v1_1(&cmdt11->patchmcsetting, atree, "patchmcsetting");
+	atui_branch* const mc_seq_control = grow_command_table_v1_1(&cmdt11->mc_seq_control, atree, "mc_seq_control");
+	atui_branch* const gfx_harvesting = grow_command_table_v1_1(&cmdt11->gfx_harvesting, atree, "gfx_harvesting");
+	atui_branch* const enablescaler = grow_command_table_v1_1(&cmdt11->enablescaler, atree, "enablescaler");
+	atui_branch* const blankcrtc = grow_command_table_v1_1(&cmdt11->blankcrtc, atree, "blankcrtc");
+	atui_branch* const enablecrtc = grow_command_table_v1_1(&cmdt11->enablecrtc, atree, "enablecrtc");
+	atui_branch* const getpixelclock = grow_command_table_v1_1(&cmdt11->getpixelclock, atree, "getpixelclock");
+	atui_branch* const enablevga_render = grow_command_table_v1_1(&cmdt11->enablevga_render, atree, "enablevga_render");
+	atui_branch* const getsclkovermclkratio = grow_command_table_v1_1(&cmdt11->getsclkovermclkratio, atree, "getsclkovermclkratio");
+	atui_branch* const setcrtc_timing = grow_command_table_v1_1(&cmdt11->setcrtc_timing, atree, "setcrtc_timing");
+	atui_branch* const setcrtc_overscan = grow_command_table_v1_1(&cmdt11->setcrtc_overscan, atree, "setcrtc_overscan");
+	atui_branch* const getsmuclockinfo = grow_command_table_v1_1(&cmdt11->getsmuclockinfo, atree, "getsmuclockinfo");
+	atui_branch* const selectcrtc_source = grow_command_table_v1_1(&cmdt11->selectcrtc_source, atree, "selectcrtc_source");
+	atui_branch* const enablegraphsurfaces = grow_command_table_v1_1(&cmdt11->enablegraphsurfaces, atree, "enablegraphsurfaces");
+	atui_branch* const updatecrtc_doublebufferregisters = grow_command_table_v1_1(&cmdt11->updatecrtc_doublebufferregisters, atree, "updatecrtc_doublebufferregisters");
+	atui_branch* const lut_autofill = grow_command_table_v1_1(&cmdt11->lut_autofill, atree, "lut_autofill");
+	atui_branch* const setdceclock = grow_command_table_v1_1(&cmdt11->setdceclock, atree, "setdceclock");
+	atui_branch* const getmemoryclock = grow_command_table_v1_1(&cmdt11->getmemoryclock, atree, "getmemoryclock");
+	atui_branch* const getengineclock = grow_command_table_v1_1(&cmdt11->getengineclock, atree, "getengineclock");
+	atui_branch* const setcrtc_usingdtdtiming = grow_command_table_v1_1(&cmdt11->setcrtc_usingdtdtiming, atree, "setcrtc_usingdtdtiming");
+	atui_branch* const externalencodercontrol = grow_command_table_v1_1(&cmdt11->externalencodercontrol, atree, "externalencodercontrol");
+	atui_branch* const lvtmaoutputcontrol = grow_command_table_v1_1(&cmdt11->lvtmaoutputcontrol, atree, "lvtmaoutputcontrol");
+	atui_branch* const vram_blockdetectionbystrap = grow_command_table_v1_1(&cmdt11->vram_blockdetectionbystrap, atree, "vram_blockdetectionbystrap");
+	atui_branch* const memorycleanup = grow_command_table_v1_1(&cmdt11->memorycleanup, atree, "memorycleanup");
+	atui_branch* const processi2cchanneltransaction = grow_command_table_v1_1(&cmdt11->processi2cchanneltransaction, atree, "processi2cchanneltransaction");
+	atui_branch* const writeonebytetohwassistedi2c = grow_command_table_v1_1(&cmdt11->writeonebytetohwassistedi2c, atree, "writeonebytetohwassistedi2c");
+	atui_branch* const readhwassistedi2cstatus = grow_command_table_v1_1(&cmdt11->readhwassistedi2cstatus, atree, "readhwassistedi2cstatus");
+	atui_branch* const speedfancontrol = grow_command_table_v1_1(&cmdt11->speedfancontrol, atree, "speedfancontrol");
+	atui_branch* const powerconnectordetection = grow_command_table_v1_1(&cmdt11->powerconnectordetection, atree, "powerconnectordetection");
+	atui_branch* const mc_synchronization = grow_command_table_v1_1(&cmdt11->mc_synchronization, atree, "mc_synchronization");
+	atui_branch* const computememoryenginepll = grow_command_table_v1_1(&cmdt11->computememoryenginepll, atree, "computememoryenginepll");
+	atui_branch* const gfx_init = grow_command_table_v1_1(&cmdt11->gfx_init, atree, "gfx_init");
+	atui_branch* const vram_getcurrentinfoblock = grow_command_table_v1_1(&cmdt11->vram_getcurrentinfoblock, atree, "vram_getcurrentinfoblock");
+	atui_branch* const dynamicmemorysettings = grow_command_table_v1_1(&cmdt11->dynamicmemorysettings, atree, "dynamicmemorysettings");
+	atui_branch* const memorytraining = grow_command_table_v1_1(&cmdt11->memorytraining, atree, "memorytraining");
+	atui_branch* const enablespreadspectrumonppll = grow_command_table_v1_1(&cmdt11->enablespreadspectrumonppll, atree, "enablespreadspectrumonppll");
+	atui_branch* const tmdsaoutputcontrol = grow_command_table_v1_1(&cmdt11->tmdsaoutputcontrol, atree, "tmdsaoutputcontrol");
+	atui_branch* const setvoltage = grow_command_table_v1_1(&cmdt11->setvoltage, atree, "setvoltage");
+	atui_branch* const dac1outputcontrol = grow_command_table_v1_1(&cmdt11->dac1outputcontrol, atree, "dac1outputcontrol");
+	atui_branch* const readefusevalue = grow_command_table_v1_1(&cmdt11->readefusevalue, atree, "readefusevalue");
+	atui_branch* const computememoryclockparam = grow_command_table_v1_1(&cmdt11->computememoryclockparam, atree, "computememoryclockparam");
+	atui_branch* const clocksource = grow_command_table_v1_1(&cmdt11->clocksource, atree, "clocksource");
+	atui_branch* const memorydeviceinit = grow_command_table_v1_1(&cmdt11->memorydeviceinit, atree, "memorydeviceinit");
+	atui_branch* const getdispobjectinfo = grow_command_table_v1_1(&cmdt11->getdispobjectinfo, atree, "getdispobjectinfo");
+	atui_branch* const dig1encodercontrol = grow_command_table_v1_1(&cmdt11->dig1encodercontrol, atree, "dig1encodercontrol");
+	atui_branch* const dig2encodercontrol = grow_command_table_v1_1(&cmdt11->dig2encodercontrol, atree, "dig2encodercontrol");
+	atui_branch* const dig1transmittercontrol = grow_command_table_v1_1(&cmdt11->dig1transmittercontrol, atree, "dig1transmittercontrol");
+	atui_branch* const dig2transmittercontrol = grow_command_table_v1_1(&cmdt11->dig2transmittercontrol, atree, "dig2transmittercontrol");
+	atui_branch* const processauxchanneltransaction = grow_command_table_v1_1(&cmdt11->processauxchanneltransaction, atree, "processauxchanneltransaction");
+	atui_branch* const dpencoderservice = grow_command_table_v1_1(&cmdt11->dpencoderservice, atree, "dpencoderservice");
+	atui_branch* const getvoltageinfo = grow_command_table_v1_1(&cmdt11->getvoltageinfo, atree, "getvoltageinfo");
+
+	atui_branch* const child_branches[] = {
+		atui_asic_init,
+		atui_getdisplaysurfacesize,
+		asic_registersinit,
+		vram_blockvenderdetection,
+		digxencodercontrol,
+		memorycontrollerinit,
+		enablecrtcmemreq,
+		memoryparamadjust,
+		dvoencodercontrol,
+		gpiopincontrol,
+		setengineclock,
+		setmemoryclock,
+		setpixelclock,
+		enabledisppowergating,
+		resetmemorydll,
+		resetmemorydevice,
+		memorypllinit,
+		adjustdisplaypll,
+		adjustmemorycontroller,
+		enableasic_staticpwrmgt,
+		setuniphyinstance,
+		dac_loaddetection,
+		lvtmaencodercontrol,
+		hw_misc_operation,
+		dac1encodercontrol,
+		dac2encodercontrol,
+		dvooutputcontrol,
+		cv1outputcontrol,
+		getconditionalgoldensetting,
+		smc_init,
+		patchmcsetting,
+		mc_seq_control,
+		gfx_harvesting,
+		enablescaler,
+		blankcrtc,
+		enablecrtc,
+		getpixelclock,
+		enablevga_render,
+		getsclkovermclkratio,
+		setcrtc_timing,
+		setcrtc_overscan,
+		getsmuclockinfo,
+		selectcrtc_source,
+		enablegraphsurfaces,
+		updatecrtc_doublebufferregisters,
+		lut_autofill,
+		setdceclock,
+		getmemoryclock,
+		getengineclock,
+		setcrtc_usingdtdtiming,
+		externalencodercontrol,
+		lvtmaoutputcontrol,
+		vram_blockdetectionbystrap,
+		memorycleanup,
+		processi2cchanneltransaction,
+		writeonebytetohwassistedi2c,
+		readhwassistedi2cstatus,
+		speedfancontrol,
+		powerconnectordetection,
+		mc_synchronization,
+		computememoryenginepll,
+		gfx_init,
+		vram_getcurrentinfoblock,
+		dynamicmemorysettings,
+		memorytraining,
+		enablespreadspectrumonppll,
+		tmdsaoutputcontrol,
+		setvoltage,
+		dac1outputcontrol,
+		readefusevalue,
+		computememoryclockparam,
+		clocksource,
+		memorydeviceinit,
+		getdispobjectinfo,
+		dig1encodercontrol,
+		dig2encodercontrol,
+		dig1transmittercontrol,
+		dig2transmittercontrol,
+		processauxchanneltransaction,
+		dpencoderservice,
+		getvoltageinfo
+	};
+
+	return ATUI_MAKE_BRANCH(atom_master_list_of_command_tables,  NULL,
+		cmdt11,cmdt11->leaves,  lengthof(child_branches), child_branches
+	);
+}
+
+inline static atui_branch*
+grow_command_tables(
+		struct atom_tree* const atree
+		) {
+	struct atomtree_master_command_table* const cmd_table = &(atree->cmd_table);
+	if (NULL == cmd_table->leaves) {
+		return NULL;
+	}
+	switch (cmd_table->ver) {
+		case v1_1: return grow_master_command_table_v1_1(cmd_table, atree);
+		// TODO: case v2_1: return grow_master_command_table_v2_1(cmd_table, atree);
+		default:
+			return ATUI_MAKE_BRANCH(atom_common_table_header,
+				u8"atom_master_list_of_command_tables (header only stub)",
+				NULL, cmd_table->table_header,  0,NULL
+			);
+	}
+}
+
 
 inline static atui_branch*
 grow_atom_rom_header(
@@ -2649,14 +2885,19 @@ grow_atom_rom_header(
 	if (NULL == rom_header->leaves) {
 		return NULL;
 	}
+	atui_branch* const atui_cmdt = grow_command_tables(atree);
 	atui_branch* const atui_dt = grow_datatables(atree);
+	atui_branch* master_tables[] = {
+		atui_cmdt,
+		atui_dt
+	};
 	atui_branch* atui_rom_header;
 	atui_branch* (* atui_func)(struct atui_funcify_args const*);
 	struct atui_funcify_args atui_args = {
 		.atomtree = rom_header,
 		.suggestbios = rom_header->leaves,
-		.import_branches = &atui_dt,
-		.num_import_branches = 1,
+		.import_branches = master_tables,
+		.num_import_branches = lengthof(master_tables),
 	};
 	switch (rom_header->ver) {
 		case v1_1: atui_func = ATUI_FUNC(atom_rom_header_v1_1); break;

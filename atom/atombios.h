@@ -348,6 +348,13 @@ struct atom_rom_header_v2_1 {
 /******************************************************************************/
 // Structures used in Command.mtb
 /******************************************************************************/
+/* TODO: Find out if this is simply v1_1.
+ *         F.ex. Fury X has version v1_1 (atom_common_table_header), and uses this command table.
+ *         Not sure if every card that uses this command table calls itself v1_1; potentially some
+ *          might have another version and only use parts of this table.
+ * 
+ *       Rename to atom_master_command_table, for consistency with atom_master_data_table?
+ */
 struct atom_master_list_of_command_tables {
 	struct atom_common_table_header  table_header;
 	uint16_t ASIC_Init;                        // Function Table, used by various SW components,latest version 1.1
@@ -459,13 +466,18 @@ struct atom_master_list_of_command_tables {
 #define MemoryRefreshConversion       Gfx_Init
 */
 
+
 /******************************************************************************/
 // Structures used in every command table
 /******************************************************************************/
-struct atom_table_attribute {
-	uint16_t WS_SizeInBytes:8;   // [7:0]=Size of workspace in Bytes (in multiple of a dword),
-	uint16_t PS_SizeInBytes:7;   // [14:8]=Size of parameter space in Bytes (multiple of a dword),
-	uint16_t UpdatedByUtility:1; // [15]=Table updated by utility flag
+/* Unionization required by atui? XXX: find out */
+union atom_table_attribute {
+	uint16_t table_attribute_bitfield;
+	struct {
+		uint16_t WS_SizeInBytes:8;   // [7:0]=Size of workspace in Bytes (in multiple of a dword),
+		uint16_t PS_SizeInBytes:7;   // [14:8]=Size of parameter space in Bytes (multiple of a dword),
+		uint16_t UpdatedByUtility:1; // [15]=Table updated by utility flag
+	};
 };
 
 /******************************************************************************/
@@ -475,7 +487,14 @@ struct atom_table_attribute {
 /******************************************************************************/
 struct atom_common_rom_command_table_header {
 	struct atom_common_table_header  table_header;
-	struct atom_table_attribute  TableAttribute;
+	union atom_table_attribute  TableAttribute;
+};
+
+/* TODO: Make a separate one for atomfirmware.h
+ */
+struct atom_command_table {
+	struct atom_common_rom_command_table_header command_table_header;
+	uint8_t commands[];
 };
 
 /******************************************************************************/

@@ -5,6 +5,7 @@ include_dirs += include_directories('.')
 yaabe_src += files(
 	'atomtree.c',
 	'asic_reg_tools.c',
+	'command_tables.c',
 )
 
 register_index_searchfields = files(

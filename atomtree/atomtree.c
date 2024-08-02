@@ -2001,6 +2001,126 @@ populate_datatables(
 	}
 }
 
+static void
+populate_command_table(
+		struct atomtree_command_table* const cmd_table, // (TODO: Make these names clearer. This is NOT master cmd table)
+		struct atom_tree* const atree,
+		uint16_t const bios_offset
+		) {
+	cmd_table->leaves = atree->bios + bios_offset;
+	populate_commands(cmd_table, atree);
+}
+
+inline static void
+populate_master_command_table_v1_1(
+		struct atomtree_master_command_table* const cmdt,
+		struct atom_tree* const atree
+		) {
+	struct atomtree_master_command_table_v1_1* const cmdt11 = &cmdt->v1_1; // TODO: find out if actually v1_1
+	struct atom_master_list_of_command_tables* const leaves = cmdt->leaves;
+
+	cmdt11->leaves = leaves;
+	populate_command_table(&cmdt11->asic_init, atree, leaves->ASIC_Init);
+	populate_command_table(&cmdt11->getdisplaysurfacesize, atree, leaves->GetDisplaySurfaceSize);
+	populate_command_table(&cmdt11->asic_registersinit, atree, leaves->ASIC_RegistersInit);
+	populate_command_table(&cmdt11->vram_blockvenderdetection, atree, leaves->VRAM_BlockVenderDetection);
+	populate_command_table(&cmdt11->digxencodercontrol, atree, leaves->DIGxEncoderControl);
+	populate_command_table(&cmdt11->memorycontrollerinit, atree, leaves->MemoryControllerInit);
+	populate_command_table(&cmdt11->enablecrtcmemreq, atree, leaves->EnableCRTCMemReq);
+	populate_command_table(&cmdt11->memoryparamadjust, atree, leaves->MemoryParamAdjust);
+	populate_command_table(&cmdt11->dvoencodercontrol, atree, leaves->DVOEncoderControl);
+	populate_command_table(&cmdt11->gpiopincontrol, atree, leaves->GPIOPinControl);
+	populate_command_table(&cmdt11->setengineclock, atree, leaves->SetEngineClock);
+	populate_command_table(&cmdt11->setmemoryclock, atree, leaves->SetMemoryClock);
+	populate_command_table(&cmdt11->setpixelclock, atree, leaves->SetPixelClock);
+	populate_command_table(&cmdt11->enabledisppowergating, atree, leaves->EnableDispPowerGating);
+	populate_command_table(&cmdt11->resetmemorydll, atree, leaves->ResetMemoryDLL);
+	populate_command_table(&cmdt11->resetmemorydevice, atree, leaves->ResetMemoryDevice);
+	populate_command_table(&cmdt11->memorypllinit, atree, leaves->MemoryPLLInit);
+	populate_command_table(&cmdt11->adjustdisplaypll, atree, leaves->AdjustDisplayPll);
+	populate_command_table(&cmdt11->adjustmemorycontroller, atree, leaves->AdjustMemoryController);
+	populate_command_table(&cmdt11->enableasic_staticpwrmgt, atree, leaves->EnableASIC_StaticPwrMgt);
+	populate_command_table(&cmdt11->setuniphyinstance, atree, leaves->SetUniphyInstance);
+	populate_command_table(&cmdt11->dac_loaddetection, atree, leaves->DAC_LoadDetection);
+	populate_command_table(&cmdt11->lvtmaencodercontrol, atree, leaves->LVTMAEncoderControl);
+	populate_command_table(&cmdt11->hw_misc_operation, atree, leaves->HW_Misc_Operation);
+	populate_command_table(&cmdt11->dac1encodercontrol, atree, leaves->DAC1EncoderControl);
+	populate_command_table(&cmdt11->dac2encodercontrol, atree, leaves->DAC2EncoderControl);
+	populate_command_table(&cmdt11->dvooutputcontrol, atree, leaves->DVOOutputControl);
+	populate_command_table(&cmdt11->cv1outputcontrol, atree, leaves->CV1OutputControl);
+	populate_command_table(&cmdt11->getconditionalgoldensetting, atree, leaves->GetConditionalGoldenSetting);
+	populate_command_table(&cmdt11->smc_init, atree, leaves->SMC_Init);
+	populate_command_table(&cmdt11->patchmcsetting, atree, leaves->PatchMCSetting);
+	populate_command_table(&cmdt11->mc_seq_control, atree, leaves->MC_SEQ_Control);
+	populate_command_table(&cmdt11->gfx_harvesting, atree, leaves->Gfx_Harvesting);
+	populate_command_table(&cmdt11->enablescaler, atree, leaves->EnableScaler);
+	populate_command_table(&cmdt11->blankcrtc, atree, leaves->BlankCRTC);
+	populate_command_table(&cmdt11->enablecrtc, atree, leaves->EnableCRTC);
+	populate_command_table(&cmdt11->getpixelclock, atree, leaves->GetPixelClock);
+	populate_command_table(&cmdt11->enablevga_render, atree, leaves->EnableVGA_Render);
+	populate_command_table(&cmdt11->getsclkovermclkratio, atree, leaves->GetSCLKOverMCLKRatio);
+	populate_command_table(&cmdt11->setcrtc_timing, atree, leaves->SetCRTC_Timing);
+	populate_command_table(&cmdt11->setcrtc_overscan, atree, leaves->SetCRTC_OverScan);
+	populate_command_table(&cmdt11->getsmuclockinfo, atree, leaves->GetSMUClockInfo);
+	populate_command_table(&cmdt11->selectcrtc_source, atree, leaves->SelectCRTC_Source);
+	populate_command_table(&cmdt11->enablegraphsurfaces, atree, leaves->EnableGraphSurfaces);
+	populate_command_table(&cmdt11->updatecrtc_doublebufferregisters, atree, leaves->UpdateCRTC_DoubleBufferRegisters);
+	populate_command_table(&cmdt11->lut_autofill, atree, leaves->LUT_AutoFill);
+	populate_command_table(&cmdt11->setdceclock, atree, leaves->SetDCEClock);
+	populate_command_table(&cmdt11->getmemoryclock, atree, leaves->GetMemoryClock);
+	populate_command_table(&cmdt11->getengineclock, atree, leaves->GetEngineClock);
+	populate_command_table(&cmdt11->setcrtc_usingdtdtiming, atree, leaves->SetCRTC_UsingDTDTiming);
+	populate_command_table(&cmdt11->externalencodercontrol, atree, leaves->ExternalEncoderControl);
+	populate_command_table(&cmdt11->lvtmaoutputcontrol, atree, leaves->LVTMAOutputControl);
+	populate_command_table(&cmdt11->vram_blockdetectionbystrap, atree, leaves->VRAM_BlockDetectionByStrap);
+	populate_command_table(&cmdt11->memorycleanup, atree, leaves->MemoryCleanUp);
+	populate_command_table(&cmdt11->processi2cchanneltransaction, atree, leaves->ProcessI2cChannelTransaction);
+	populate_command_table(&cmdt11->writeonebytetohwassistedi2c, atree, leaves->WriteOneByteToHWAssistedI2C);
+	populate_command_table(&cmdt11->readhwassistedi2cstatus, atree, leaves->ReadHWAssistedI2CStatus);
+	populate_command_table(&cmdt11->speedfancontrol, atree, leaves->SpeedFanControl);
+	populate_command_table(&cmdt11->powerconnectordetection, atree, leaves->PowerConnectorDetection);
+	populate_command_table(&cmdt11->mc_synchronization, atree, leaves->MC_Synchronization);
+	populate_command_table(&cmdt11->computememoryenginepll, atree, leaves->ComputeMemoryEnginePLL);
+	populate_command_table(&cmdt11->gfx_init, atree, leaves->Gfx_Init);
+	populate_command_table(&cmdt11->vram_getcurrentinfoblock, atree, leaves->VRAM_GetCurrentInfoBlock);
+	populate_command_table(&cmdt11->dynamicmemorysettings, atree, leaves->DynamicMemorySettings);
+	populate_command_table(&cmdt11->memorytraining, atree, leaves->MemoryTraining);
+	populate_command_table(&cmdt11->enablespreadspectrumonppll, atree, leaves->EnableSpreadSpectrumOnPPLL);
+	populate_command_table(&cmdt11->tmdsaoutputcontrol, atree, leaves->TMDSAOutputControl);
+	populate_command_table(&cmdt11->setvoltage, atree, leaves->SetVoltage);
+	populate_command_table(&cmdt11->dac1outputcontrol, atree, leaves->DAC1OutputControl);
+	populate_command_table(&cmdt11->readefusevalue, atree, leaves->ReadEfuseValue);
+	populate_command_table(&cmdt11->computememoryclockparam, atree, leaves->ComputeMemoryClockParam);
+	populate_command_table(&cmdt11->clocksource, atree, leaves->ClockSource);
+	populate_command_table(&cmdt11->memorydeviceinit, atree, leaves->MemoryDeviceInit);
+	populate_command_table(&cmdt11->getdispobjectinfo, atree, leaves->GetDispObjectInfo);
+	populate_command_table(&cmdt11->dig1encodercontrol, atree, leaves->DIG1EncoderControl);
+	populate_command_table(&cmdt11->dig2encodercontrol, atree, leaves->DIG2EncoderControl);
+	populate_command_table(&cmdt11->dig1transmittercontrol, atree, leaves->DIG1TransmitterControl);
+	populate_command_table(&cmdt11->dig2transmittercontrol, atree, leaves->DIG2TransmitterControl);
+	populate_command_table(&cmdt11->processauxchanneltransaction, atree, leaves->ProcessAuxChannelTransaction);
+	populate_command_table(&cmdt11->dpencoderservice, atree, leaves->DPEncoderService);
+	populate_command_table(&cmdt11->getvoltageinfo, atree, leaves->GetVoltageInfo);
+}
+
+inline static void
+populate_command_tables(
+	struct atom_tree* const atree,
+	uint16_t const bios_offset
+	) {
+	struct atomtree_master_command_table* const cmd_table = &atree->cmd_table;
+
+	if (bios_offset) { // TODO: shouldn't this be an assert?
+		cmd_table->leaves = atree->bios + bios_offset;
+		cmd_table->ver = get_ver(cmd_table->table_header);
+		switch (cmd_table->ver) {
+			case v1_1: populate_master_command_table_v1_1(cmd_table, atree); break;
+			// TODO: case v2_1: populate_master_command_table_v2_1(cmd_table, atree); break;
+			default: assert(0); break;
+		}
+	}
+}
+
 
 inline static void
 populate_atom_rom_header_v1_1(
@@ -2031,6 +2151,7 @@ populate_atom_rom_header_v1_1(
 
 	//rom_header->data_table = &(atree->data_table);
 	populate_datatables(atree, leaves->MasterDataTableOffset);
+	populate_command_tables(atree, leaves->MasterCommandTableOffset);
 }
 
 inline static void
@@ -2064,6 +2185,7 @@ populate_atom_rom_header_v2_1(
 	}
 
 	//rom_header->data_table = &(atree->data_table);
+	populate_command_tables(atree, leaves->MasterCommandTableOffset);
 	populate_datatables(atree, leaves->MasterDataTableOffset);
 }
 
@@ -2098,6 +2220,7 @@ populate_atom_rom_header_v2_2(
 	}
 
 	//rom_header->data_table = &(atree->data_table);
+	populate_command_tables(atree, leaves->masterhwfunction_offset);
 	populate_datatables(atree, leaves->masterdatatable_offset);
 
 	/*
@@ -2194,6 +2317,7 @@ populate_pci_tables(
 	atree_pci->num_images = i;
 }
 
+/* Find vbios_rom_header */
 inline static void*
 bios_fastforward(
 		void const* const biosfile,
@@ -2217,6 +2341,7 @@ bios_fastforward(
 }
 
 
+/* Populate atom_tree */
 struct atom_tree*
 atombios_parse(
 		void* const alloced_bios,
@@ -2255,7 +2380,6 @@ atombios_parse(
 	);
 	populate_pci_tables(&(atree->pcir_tables), &(image->pci_header));
 
-	// populate_commandtables(atree); // TODO
 	return atree;
 }
 
